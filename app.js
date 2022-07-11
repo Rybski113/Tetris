@@ -43,8 +43,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 
 
+
     let currentPosition = 4
-    let current = theTetrominoes[0][0]
+    let random = Math.floor(Math.random() * theTetrominoes.length)
+   
+    let current = theTetrominoes[random][0]
 
     function draw() {
         current.forEach(index => {
