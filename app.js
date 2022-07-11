@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const startBtn = document.querySelector('#start-button')
     const width = 10
     let timerId
+    let score = 0
 
     const lTetromino = [
         [1, width+1, width*2+1, 2],
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             currentPosition = 4
             draw()
             displayShape()
+            addScore()
         }
     }
 
@@ -184,5 +186,23 @@ document.addEventListener('DOMContentLoaded', ()=> {
             displayShape()
         }
     })
+
+
+    function addScore() {
+        for ( let i = 0; i < 199; i +=width) {
+            const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
+
+            if(row.every(index => squares[index].classList.contains('taken'))) {
+                score += 10
+                scoreDisplay.innerHTML = score
+                row.forEach(index => {
+                    squares[index].classList.remove('taken')
+                })
+                const squaresRemoved = squares.splice(i, width)
+                console.log(squaresRemoved)
+            }
+        }
+    }
+    
 
 })
