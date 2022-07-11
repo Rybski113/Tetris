@@ -67,6 +67,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     timerId = setInterval(moveDown, 300)
 
+
+    function control() {
+        
+    }
+
+
+
+
+
     function moveDown() {
         undraw()
         currentPosition += width
@@ -84,5 +93,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
             currentPosition = 4
             draw()
         }
+    }
+
+    function moveLeft() {
+        undraw()
+        const isAtLeftEdge = current.some( index => (currentPosition + index) % width === 0)
+
+        if(!isAtLeftEdge) currentPosition -=1
+
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition +=1
+        }
+
+        draw()
     }
 })
