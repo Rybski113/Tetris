@@ -45,8 +45,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
     let currentPosition = 4
+    let currentRotation = 0
+
     let random = Math.floor(Math.random() * theTetrominoes.length)
-   
     let current = theTetrominoes[random][0]
 
     function draw() {
@@ -55,6 +56,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
         })
     }
 
-    draw()
 
+    function undraw() {
+        current.forEach(index=> {
+            squares[currentPosition + index].classList.remove('tetromino')
+        })
+    }
+
+
+
+    timerId = setInterval(moveDown, 1000)
+
+    function moveDown() {
+        undraw()
+        currentPosition += width
+        draw()
+
+    }
 })
